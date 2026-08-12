@@ -1,32 +1,35 @@
-import React from "react";
-import { View, Text } from "react-native";
+import BackButton from "@/shared/ui/button/BackButton";
+import DangerButton from "@/shared/ui/button/DangerButton";
+import PrimaryButton from "@/shared/ui/button/PrimaryButton";
+import Input from "@/shared/ui/input/Input";
+import { WheelPicker } from "@/shared/ui/input/WheelInput";
+
+import { Slider } from "@/shared/ui/input/Slider";
+
+import React, { useMemo, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { MealCard } from "@/entities/meal/ui/MealCard";
-import { Button } from "@/shared/ui/Button";
 
 export const HomeScreen = () => {
+  const heights = useMemo(
+    () => Array.from({ length: 121 }, (_, i) => i + 100),
+    []
+  );
+  const [progress, setProgress] = useState(50);
+
   return (
-    <SafeAreaView className="flex-1 bg-slate-900 px-4 pt-8">
-      <View className="flex-1 justify-between pb-6">
-        <View>
-          <Text className="text-3xl font-extrabold text-white mb-6">
-            nutri<Text className="text-emerald-400">OS</Text>
-          </Text>
+    <SafeAreaView className="bg-background p-3xl gap-xl">
+      <PrimaryButton text="Test" />
+      <DangerButton text="Test" />
+      <BackButton />
+      <Input placeholder="Test" value="123" variant="default" />
+      <WheelPicker
+        data={heights}
+        value={heights[50]}
+        onChange={() => {}}
+        unit="cm"
+      />
 
-          <Text className="text-slate-400 text-sm mb-4 font-semibold uppercase tracking-wider">
-            Сегодняшний рацион
-          </Text>
-
-          {/* Тестовые карточки */}
-          <MealCard title="Завтрак: Овсянка с ягодами" calories={420} />
-          <MealCard title="Обед: Куриное филе с киноа" calories={650} />
-        </View>
-
-        <Button
-          title="+ Добавить прием пищи"
-          onPress={() => alert("Кнопка работает!")}
-        />
-      </View>
+      <Slider value={progress} onValueChange={setProgress} min={0} max={100} />
     </SafeAreaView>
   );
 };
