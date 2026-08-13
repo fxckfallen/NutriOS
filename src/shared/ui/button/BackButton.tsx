@@ -9,13 +9,16 @@ interface BackButtonProps {
 export const BackButton: React.FC<BackButtonProps> = ({ onClick }) => {
   return (
     <TouchableOpacity onPress={onClick} className="
-      w-fit
+      h-full
       bg-surface
       border
+      aspect-square
       border-divider
       p-md
       rounded-md
       self-start
+      items-center
+      justify-center
     ">
       <ChevronLeft size={20} color={'white'}/>
     </TouchableOpacity>

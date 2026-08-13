@@ -17,6 +17,7 @@ export const DangerButton: React.FC<DangerButtonProps> = ({ text, onClick }) => 
       justify-center
       items-center
       rounded-md
+      w-full
     ">
       <Text className="
         text-red

@@ -1,3 +1,5 @@
+//created by claude.ai
+
 import React, { useCallback, useMemo } from 'react';
 import { View, ViewStyle } from 'react-native';
 import { WheelPicker } from './WheelInput';

@@ -21,6 +21,7 @@ export const Input: React.FC<InputProps> = ({ value, variant, placeholder }) => 
       transition-all
       placeholder:text-foreground-placeholder
       focus:border-accent
+      w-full
     `, variant == "error" ? `border-red text-red` : ``)} placeholder={placeholder} defaultValue={value}/>
   );
 };

@@ -1,3 +1,5 @@
+//created by claude.ai
+
 import React, { useCallback, useEffect, useRef } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';

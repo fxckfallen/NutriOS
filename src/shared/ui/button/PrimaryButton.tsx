@@ -16,6 +16,7 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({ text, onClick }) =
       items-center
       shadow-[0_0_28px_rgba(28,242,138,0.3)]
       rounded-sm
+      w-full
     ">
       <Text className="
       text-black
