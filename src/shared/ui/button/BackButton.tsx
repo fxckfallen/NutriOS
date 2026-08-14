@@ -9,10 +9,8 @@ interface BackButtonProps {
 export const BackButton: React.FC<BackButtonProps> = ({ onClick }) => {
   return (
     <TouchableOpacity onPress={onClick} className="
-      h-full
       bg-surface
       border
-      aspect-square
       border-divider
       p-md
       rounded-md
