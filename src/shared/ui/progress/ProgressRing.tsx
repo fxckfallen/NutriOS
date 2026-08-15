@@ -1,8 +1,6 @@
-//created by chatgpt.com
-
 import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
-import Svg, { Circle } from "react-native-svg";
+import Svg, { Circle, Defs, FeDropShadow, Filter } from "react-native-svg";
 import Animated, {
   Easing,
   useAnimatedProps,
@@ -10,7 +8,17 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
+/**
+ * NOTE: this uses react-native-reanimated (useSharedValue/withTiming),
+ * same as Slider — it needs a custom dev client on Expo, it will not
+ * animate correctly in plain Expo Go. See the Slider notes for why.
+ */
+
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
+const ACCENT = "#1CF28A"; // accent.DEFAULT
+const SURFACE = "#141414"; // surface.DEFAULT
+const DIVIDER = "rgba(255, 255, 255, 0.08)"; // divider — was rgba(0,0,0,0.08), didn't match the app's actual token
 
 interface ProgressRingProps {
   size?: number;
@@ -85,7 +93,7 @@ export default function ProgressRing({
           cy={center}
           r={radius}
           fill="none"
-          stroke="rgba(0, 0, 0, 0.08)"
+          stroke={DIVIDER}
           strokeWidth={strokeWidth + 2}
         />
 
@@ -95,7 +103,7 @@ export default function ProgressRing({
           cy={center}
           r={radius}
           fill="none"
-          stroke="#141414"
+          stroke={SURFACE}
           strokeWidth={strokeWidth}
         />
 
@@ -108,7 +116,7 @@ export default function ProgressRing({
           cy={center}
           r={radius}
           fill="none"
-          stroke="#1CF28A"
+          stroke={ACCENT}
           strokeWidth={strokeWidth + 4}
           strokeLinecap="round"
           strokeDasharray={`${circumference} ${circumference}`}
@@ -125,7 +133,7 @@ export default function ProgressRing({
           cy={center}
           r={radius}
           fill="none"
-          stroke="#1CF28A"
+          stroke={ACCENT}
           strokeWidth={strokeWidth + 10}
           strokeLinecap="round"
           strokeDasharray={`${circumference} ${circumference}`}
@@ -143,7 +151,7 @@ export default function ProgressRing({
           cy={center}
           r={radius}
           fill="none"
-          stroke="#1CF28A"
+          stroke={ACCENT}
           strokeWidth={strokeWidth + 18}
           strokeLinecap="round"
           strokeDasharray={`${circumference} ${circumference}`}
@@ -157,7 +165,7 @@ export default function ProgressRing({
           cy={center}
           r={radius}
           fill="none"
-          stroke="#1CF28A"
+          stroke={ACCENT}
           strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeDasharray={`${circumference} ${circumference}`}
@@ -167,7 +175,7 @@ export default function ProgressRing({
 
       {/* PERCENTAGE */}
       <View className="absolute items-center justify-center">
-        <Text className="text-[28px] font-bold text-white">
+        <Text className="text-disp font-bold text-foreground">
           {percentage}%
         </Text>
       </View>

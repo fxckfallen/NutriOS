@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ProgressBar } from "@/shared/ui/progress/ProgressBar";
 import { View } from "react-native";
-import {Stars } from "lucide-react-native";
-import InfoBanner from "@/shared/ui/banner/InfoBanner";
+import { CheckList } from "@/shared/ui/checklist/CheckList";
+import ProgressRing from "@/shared/ui/progress/ProgressRing";
 
 export const HomeScreen = () => {
   
@@ -18,7 +18,17 @@ export const HomeScreen = () => {
           <ProgressBar value={progress} />
         </View>
       </View>
-      <InfoBanner text="NutriOS AI calculates macros automatically from your description." Icon={Stars}/>
+      <ProgressRing duration={4000}/>
+      <CheckList
+        steps={[
+            'Analyzing your goal',
+            'Calculating your calorie needs',
+            'Matching recipes to your budget',
+            'Building your grocery list',
+          ]}
+          onComplete={() => {}}
+          delays={[500, 1400, 2300, 3200]}
+      /> 
     </SafeAreaView>
   );
 };

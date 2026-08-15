@@ -1,5 +1,3 @@
-//created by claude.ai
-
 import React, { useCallback, useEffect, useRef } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -26,10 +24,10 @@ import Animated, {
  * on Android and break inside iOS modals.
  */
 
-const FILL_COLOR = '#1CF28A';
-const EMPTY_BG = '#141414';
-const EMPTY_BORDER = 'rgba(0, 0, 0, 0.08)';
-const GLOW_COLOR = 'rgba(28, 242, 138, 0.3)'; // #1CF28A @ 30%
+const FILL_COLOR = '#1CF28A'; // accent.DEFAULT
+const EMPTY_BG = '#141414'; // surface.DEFAULT
+const EMPTY_BORDER = 'rgba(255, 255, 255, 0.08)'; // divider
+const GLOW_COLOR = 'rgba(28, 242, 138, 0.3)'; // accent @ 30% — deliberately more than accent.bg (10%)/accent.border (20%), needs to read as a glow
 
 function clamp01(v: number) {
   'worklet';
@@ -224,7 +222,6 @@ export function Slider({
                 left: 0,
                 height: trackHeight,
                 borderRadius: trackHeight / 2,
-                // ts-expect-error — boxShadow needs RN's New Architecture
                 // (default with Expo SDK 52+). Old-arch fallback (iOS-only):
                 // shadowColor: FILL_COLOR, shadowOpacity: 0.3,
                 // shadowRadius: 28, shadowOffset: { width: 0, height: 0 }.
