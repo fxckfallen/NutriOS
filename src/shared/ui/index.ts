@@ -5,3 +5,4 @@ export * from './input';
 export * from './progress';
 export * from './select';
 export * from './banner';
+export * from './checkbox';
