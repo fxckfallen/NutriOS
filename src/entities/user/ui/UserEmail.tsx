@@ -1,13 +1,14 @@
 import React from 'react';
 import { Text } from 'react-native';
+import { User } from '../model/types';
 
 interface UserEmailProps {
-    email: string;
+    user: User;
 }
 
-export const UserEmail: React.FC<UserEmailProps> = ({ email }) => {
+export const UserEmail: React.FC<UserEmailProps> = ({ user }) => {
   return (
-    <Text className='text-body text-foreground-muted'>{email}</Text>
+    <Text className='text-body text-foreground-muted'>{user.email}</Text>
   );
 };
 

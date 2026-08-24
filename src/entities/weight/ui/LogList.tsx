@@ -20,7 +20,7 @@ export const LogList: React.FC<LogListProps> = ({ weightLogs }) => {
 
             return (
                 <LogListItem 
-                    key={weightLog.date} 
+                    key={index} 
                     weightLog={weightLog} 
                     diff={diff}
                     isLast={isLast}
