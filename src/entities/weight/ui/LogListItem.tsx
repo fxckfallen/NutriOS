@@ -22,7 +22,7 @@ export const LogListItem: React.FC<LogListItemProps> = ({ weightLog, diff, isLas
         ${!isLast ? 'border-b border-divider' : ''} 
     `}>
         <Text className='text-body font-medium text-foreground-muted'>{weightLog.date}</Text>
-        <View className='flex flex-row gap-lg'>
+        <View className='flex flex-row gap-lg items-center'>
             {diff !== undefined && (
                 diff <= 0 ? (
                     <View className='flex flex-row items-center justify-end'>
@@ -36,7 +36,7 @@ export const LogListItem: React.FC<LogListItemProps> = ({ weightLog, diff, isLas
                     </View>
                 )
             )}
-            <Text className='text-body font-medium text-foreground text-right mt-1'>{weightLog.weight}</Text>
+            <Text className='text-body font-medium text-foreground text-right'>{weightLog.weight}</Text>
         </View>
     </View>
   );
