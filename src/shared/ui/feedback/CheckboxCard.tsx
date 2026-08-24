@@ -18,7 +18,7 @@ export const CheckboxCard: React.FC<CheckboxCardProps> = ({ checked, onCheck }) 
       cn(checked ? 
       `border-accent-border bg-accent-bg` 
       : 
-      `border-divider bg-surface`, 
+      `border-divider bg-surface-secondary`, 
       `border transition-all duration-500 p-md rounded-lg`)}>
       <Check size={25} color={checked ? "#1CF28A" : "rgba(255, 255, 255, 0.50)"}/>
     </TouchableOpacity>
