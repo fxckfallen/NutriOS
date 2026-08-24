@@ -2,7 +2,7 @@
 
 import React, { useCallback, useMemo } from 'react';
 import { View, ViewStyle } from 'react-native';
-import { WheelPicker } from './WheelInput';
+import { WheelPicker } from './WheelPicker';
 
 /**
  * Weight picker built from two independent WheelPicker columns:

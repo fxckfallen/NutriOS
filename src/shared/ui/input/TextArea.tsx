@@ -1,15 +1,15 @@
-import { cn } from '@/shared/lib/cn';
+import { cn } from '@/shared/lib';
 import React from 'react';
 import { TextInput } from 'react-native';
 
-
 interface TextAreaProps {
-  value?: string;
+  defaultValue?: string;
   variant?: "default" | "error";
   placeholder: string;
+  onChangeText?: (text: string) => void; 
 }
 
-export const TextArea: React.FC<TextAreaProps> = ({ value, variant, placeholder }) => {
+export const TextArea: React.FC<TextAreaProps> = ({ defaultValue, variant, placeholder, onChangeText }) => {
   return (
     <TextInput className={cn(`
       bg-surface
@@ -22,7 +22,13 @@ export const TextArea: React.FC<TextAreaProps> = ({ value, variant, placeholder 
       placeholder:text-foreground-placeholder
       focus:border-accent
       focus:text-foreground
-    `, variant == "error" ? `border-red text-red` : ``)} multiline={true} textAlignVertical='top'  placeholder={placeholder} defaultValue={value}/>
+    `, variant == "error" ? `border-red text-red` : ``)}
+   multiline={true} 
+   textAlignVertical='top'  
+   placeholder={placeholder} 
+   defaultValue={defaultValue}
+   onChangeText={onChangeText}
+   />
   );
 };
 

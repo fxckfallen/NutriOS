@@ -1,4 +1,4 @@
-import { cn } from '@/shared/lib/cn';
+import { cn } from '@/shared/lib';
 import { LucideIcon } from 'lucide-react-native';
 import React from 'react';
 import { Text, View } from 'react-native';

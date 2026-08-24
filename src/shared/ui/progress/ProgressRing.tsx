@@ -26,7 +26,7 @@ interface ProgressRingProps {
   duration?: number;
 }
 
-export default function ProgressRing({
+export function ProgressRing({
   size = 120,
   strokeWidth = 6,
   duration = 1000,

@@ -1,4 +1,4 @@
-import { cn } from '@/shared/lib/cn';
+import { cn } from '@/shared/lib';
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { SelectItemProps } from './types';
