@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BackButton, ProgressBar } from "@/shared/ui";
 import { View } from "react-native";
+import { LogList, CurrentWeightCard } from "@/entities/weight";
+import { mockWeightLogs } from "@/entities/weight/model/mock";
 
 export const HomeScreen = () => {
   
@@ -15,7 +17,8 @@ export const HomeScreen = () => {
           <ProgressBar value={progress} />
         </View>
       </View>
-      
+      <CurrentWeightCard currentWeight={75}/>
+      <LogList weightLogs={mockWeightLogs}/>
     </SafeAreaView>
   );
 };
