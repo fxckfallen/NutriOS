@@ -5,6 +5,7 @@ import { View } from "react-native";
 import { Meal, MealCard } from "@/entities/meal";
 import { BudgetCard } from "@/entities/grocery";
 import { IngredientList, Recipe, StepList } from "@/entities/recipe";
+import { LossItem, LossList } from "@/entities/subscription";
 
 export const HomeScreen = () => {
   const [progress, setProgress] = useState(35);
@@ -58,6 +59,19 @@ export const HomeScreen = () => {
       }
     ]
   }
+  const mockItems: LossItem[] = [{
+    feature: "Personalized AI plan"
+  },
+  {
+    feature: "Budget-based menus"
+  },
+  {
+    feature: "Smart grocery lists"
+  },
+  {
+    feature: "Recipes for every meal"
+  }
+]
   return (
     <SafeAreaView className="bg-background p-3xl gap-xl flex items-center w-full">
       <View className="flex flex-row h-fit w-full gap-sm items-center">
@@ -66,10 +80,7 @@ export const HomeScreen = () => {
           <ProgressBar value={progress} />
         </View>
       </View>
-      <MealCard meal={testMeal} checked={checked} onCheck={setChecked}/>
-      <BudgetCard budget={80} spent={23.30} currency="EUR"/>
-      <IngredientList recipe={mock}/>
-      <StepList recipe={mock}/>
+      <LossList items={mockItems}/>
     </SafeAreaView> 
   );
 };
