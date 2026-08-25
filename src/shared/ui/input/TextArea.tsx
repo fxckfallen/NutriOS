@@ -1,35 +1,51 @@
 import { cn } from '@/shared/lib';
-import React from 'react';
+import React, { useState } from 'react';
 import { TextInput } from 'react-native';
 
 interface TextAreaProps {
   defaultValue?: string;
-  variant?: "default" | "error";
+  variant?: 'default' | 'error';
   placeholder: string;
-  onChangeText?: (text: string) => void; 
+  onChangeText?: (text: string) => void;
 }
 
-export const TextArea: React.FC<TextAreaProps> = ({ defaultValue, variant, placeholder, onChangeText }) => {
+export const TextArea: React.FC<TextAreaProps> = ({
+  defaultValue,
+  variant = 'default',
+  placeholder,
+  onChangeText,
+}) => {
+  const [height, setHeight] = useState(48);
+
   return (
-    <TextInput className={cn(`
-      bg-surface
-      border
-      border-divider
-      p-md
-      rounded-md
-      text-foreground
-      transition-all
-      placeholder:text-foreground-placeholder
-      focus:border-accent
-      focus:text-foreground
-    `, variant == "error" ? `border-red text-red` : ``)}
-   multiline={true} 
-   textAlignVertical='top'  
-   placeholder={placeholder} 
-   defaultValue={defaultValue}
-   onChangeText={onChangeText}
-   />
+    <TextInput
+      className={cn(
+        `
+          bg-surface
+          border
+          border-divider
+          p-md
+          rounded-md
+          text-foreground
+          placeholder:text-foreground-placeholder
+        `,
+        variant === 'error'
+          ? 'border-red text-red'
+          : ''
+      )}
+      multiline
+      textAlignVertical="top"
+      placeholder={placeholder}
+      defaultValue={defaultValue}
+      onChangeText={onChangeText}
+      onContentSizeChange={(event) => {
+        setHeight(Math.max(48, event.nativeEvent.contentSize.height));
+      }}
+      style={{
+        height,
+      }}
+    />
   );
 };
 
-export default TextArea;
+export default TextArea;  

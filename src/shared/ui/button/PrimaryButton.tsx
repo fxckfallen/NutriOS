@@ -2,27 +2,51 @@ import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
 interface PrimaryButtonProps {
-    text: string;
-    onClick?: () => void;
+  text: string;
+  onPress?: () => void;
+  disabled?: boolean;
 }
 
-export const PrimaryButton: React.FC<PrimaryButtonProps> = ({ text, onClick }) => {
+export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
+  text,
+  onPress,
+  disabled = false,
+}) => {
   return (
-    <TouchableOpacity onPress={onClick} className="
-      bg-accent
-      p-md
-      flex
-      justify-center
-      items-center
-      shadow-[0_0_28px_rgba(28,242,138,0.3)]
-      rounded-sm
-      w-full
-    ">
-      <Text className="
-      text-black
-      font-bold
-      text-body
-      ">
+    <TouchableOpacity
+      onPress={onPress}
+      disabled={disabled}
+      activeOpacity={disabled ? 1 : 0.7}
+      className={`
+        p-md
+        flex
+        justify-center
+        items-center
+        rounded-sm
+        w-full
+        ${disabled
+          ? 'bg-surface-secondary border border-divider'
+          : 'bg-accent'}
+      `}
+      style={
+        !disabled
+          ? {
+              shadowColor: '#1CF28A',
+              shadowOffset: { width: 0, height: 0 },
+              shadowOpacity: 0.3,
+              shadowRadius: 14,
+              elevation: 10,
+            }
+          : undefined
+      }
+    >
+      <Text
+        className={`
+          font-bold
+          text-body
+          ${disabled ? 'text-foreground-placeholder' : 'text-black'}
+        `}
+      >
         {text}
       </Text>
     </TouchableOpacity>

@@ -4,38 +4,31 @@ import { Text, TouchableOpacity } from 'react-native';
 import { SelectItemProps } from './types';
 
 
-export const SelectItem: React.FC<SelectItemProps> = ({
+export function SelectItem<T extends string = string>({
   value,
   mainText,
   subText,
   selected = false,
   onSelect,
-}) => {
+}: SelectItemProps<T>) {
   return (
     <TouchableOpacity
       className={cn(
         'bg-surface border py-lg w-full rounded-md items-center justify-center transition-all',
         selected ? 'border-accent' : 'border-divider',
       )}
-      onPress={() => onSelect?.(value)}
+      onPress={() => {
+        // console.log('tap', value);
+        onSelect?.(value);  
+      }}  
       activeOpacity={1}
     >
-      <Text
-        className={cn(
-          'text-body',
-          selected ? 'text-accent' : 'text-foreground-muted transition-all',
-        )}
-      >
+      <Text className={cn('text-body', selected ? 'text-accent' : 'text-foreground-muted transition-all')}>
         {mainText}
       </Text>
-
-      {subText && (
-        <Text className="text-cap text-foreground-muted">
-          {subText}
-        </Text>
-      )}
+      {subText && <Text className="text-cap text-foreground-muted">{subText}</Text>}
     </TouchableOpacity>
   );
-};
+}
 
 export default SelectItem;

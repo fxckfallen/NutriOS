@@ -7,6 +7,9 @@ module.exports = {
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
+      boxShadow: {
+        'glow': '0 0 28px rgba(28, 242, 138, 0.3)', // <--- Добавляем сюда
+      },
       // 🎨 ЦВЕТА (Colors)
       colors: {
         // Акцентный цвет и его вариации

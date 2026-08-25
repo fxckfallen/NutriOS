@@ -2,31 +2,22 @@ import React, {
   Children,
   cloneElement,
   ReactElement,
-  useState,
 } from 'react';
 import { View } from 'react-native';
-import { SelectProps } from './types';
+import { SelectItemProps, SelectProps } from './types';
 
 
-export const Select: React.FC<SelectProps> = ({
-  children,
-  onSelect,
-}) => {
-  const [selectedValue, setSelectedValue] = useState<string>();
-
-  const handleSelect = (value: string) => {
-    setSelectedValue(value);
-    onSelect?.(value);
-  };
-
+// Select.tsx
+export const Select: React.FC<SelectProps> = ({ children, selectedValue, onSelect }) => {
   return (
     <View className="w-full gap-md">
-      {Children.map(children, (child) =>
-        cloneElement(child, {
-          selected: child.props.value === selectedValue,
-          onSelect: handleSelect,
-        }),
-      )}
+      {Children.map(children, (child) => {
+        const element = child as ReactElement<SelectItemProps>;
+        return cloneElement(element, {
+          selected: element.props.value === selectedValue,
+          onSelect, // просто прокидываем дальше, а не оборачиваем в свой handleSelect
+        });
+      })}
     </View>
   );
 };

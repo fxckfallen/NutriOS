@@ -1,16 +1,16 @@
-import React from 'react';
+import { ReactElement } from 'react';
 
-export interface SelectItemProps {
-  value: string;
+export interface SelectItemProps<T extends string = string> {
+  value: T;
   mainText: string;
   subText?: string;
   selected?: boolean;
-  onSelect?: (value: string) => void;
+  onSelect?: (value: T) => void;
 }
 
+// types.ts
 export interface SelectProps {
-  children:
-    | React.ReactElement<SelectItemProps>
-    | React.ReactElement<SelectItemProps>[];
+  children: ReactElement<SelectItemProps> | ReactElement<SelectItemProps>[];
+  selectedValue?: string;      // ← теперь приходит снаружи
   onSelect?: (value: string) => void;
 }

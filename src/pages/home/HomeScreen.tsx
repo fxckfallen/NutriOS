@@ -6,6 +6,7 @@ import { Meal, MealCard } from "@/entities/meal";
 import { BudgetCard } from "@/entities/grocery";
 import { IngredientList, Recipe, StepList } from "@/entities/recipe";
 import { LossItem, LossList } from "@/entities/subscription";
+import { OnboardingFlow } from "@/features/complete-onboarding";
 
 export const HomeScreen = () => {
   const [progress, setProgress] = useState(35);
@@ -73,14 +74,8 @@ export const HomeScreen = () => {
   }
 ]
   return (
-    <SafeAreaView className="bg-background p-3xl gap-xl flex items-center w-full">
-      <View className="flex flex-row h-fit w-full gap-sm items-center">
-        <BackButton />
-        <View className="flex-1">
-          <ProgressBar value={progress} />
-        </View>
-      </View>
-      <LossList items={mockItems}/>
+    <SafeAreaView className="bg-background p-3xl gap-xl flex-1 items-center w-full">
+      <OnboardingFlow/>
     </SafeAreaView> 
   );
 };
