@@ -33,7 +33,6 @@ export const TextArea: React.FC<TextAreaProps> = ({
           ? 'border-red text-red'
           : ''
       )}
-      multiline
       textAlignVertical="top"
       placeholder={placeholder}
       defaultValue={defaultValue}

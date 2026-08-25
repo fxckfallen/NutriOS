@@ -27,7 +27,7 @@ export const GoalStep: React.FC<GoalStepProps> = ({ currentIndex, total, onNext,
     <View className="flex-1 w-full justify-between">
       <View className="gap-xl">
         
-      <Text className="text-disp font-bold text-foreground">What's your main goal? {selected}</Text>
+      <Text className="text-disp font-bold text-foreground">What's your main goal?</Text>
       <View className="gap-md">
             {GOALS.map((goal) => (
                 <SelectItem

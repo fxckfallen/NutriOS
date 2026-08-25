@@ -6,6 +6,7 @@ import { useOnboarding } from '../model/useOnboarding';
 
 import GoalStep from './GoalStep';
 import GoalConfirmStep from './GoalConfirmStep';
+import ProfileStep from './ProfileStep';
 
 export const OnboardingFlow = () => {
   const {
@@ -61,7 +62,14 @@ export const OnboardingFlow = () => {
               );
 
             case 'profile':
-                
+                return (
+                    <ProfileStep
+                        onNext={(name, sex, age) => {
+                            updateAnswers({ name, sex, age });
+                            next();
+                        }}
+                    />
+                )
             case 'body':
             case 'lifestyle':
             case 'budget':

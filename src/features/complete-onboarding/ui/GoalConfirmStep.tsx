@@ -72,29 +72,32 @@ export const GoalConfirmStep: React.FC<GoalConfirmStepProps> = ({
     animation.start(({ finished }) => {
       if (!finished) return;
 
-      // Мягкое мерцание:
-      // 1 → 0.75 → 1
       Animated.loop(
         Animated.sequence([
           Animated.timing(footerOpacity, {
-            toValue: 0.75,
-            duration: 700,
+            toValue: 0.4, // Опускаем до 0.4 для красивого контраста
+            duration: 800,
             easing: Easing.inOut(Easing.ease),
             useNativeDriver: true,
           }),
           Animated.timing(footerOpacity, {
             toValue: 1,
-            duration: 700,
+            duration: 800,
             easing: Easing.inOut(Easing.ease),
             useNativeDriver: true,
           }),
         ]),
         {
-          iterations: 100,
-        },
+          // 1. УБИРАЕМ РЕЗКИЙ СКАЧОК
+          resetBeforeIteration: false, 
+          
+          // 2. ДЕЛАЕМ ИМИТАЦИЮ ЗАГРУЗКИ
+          // 2 цикла = 3.2 секунды мерцания. После этого вызовется onNext()
+          iterations: 2, 
+        }
       ).start(({ finished }) => {
         if (finished) {
-          onNext();
+          onNext(); // Автоматически переходим дальше
         }
       });
     });
