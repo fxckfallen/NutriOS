@@ -1,29 +1,40 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Text, View } from 'react-native';
 import { OnboardingAnswers } from '../model/types';
-import { PrimaryButton, SelectItem, TextArea } from '@/shared/ui';
+import { PrimaryButton, SelectItem } from '@/shared/ui';
 
-const GOALS: { value: OnboardingAnswers['goal']; label: string }[] = [
-  { value: 'lose-weight', label: 'Lose Weight' },
-  { value: 'build-muscle', label: 'Build Muscle' },
-  { value: 'maintain', label: 'Maintain & Eat Healthy' },
-  { value: 'save-money', label: 'Save Money on Food' },
-  { value: 'other', label: 'Something Else' },
+// Список уровней активности с описанием (subText)
+const LIFESTYLES: {
+  value: OnboardingAnswers['lifestyle'];
+  label: string;
+  subText: string;
+}[] = [
+  {
+    value: 'sedentary',
+    label: 'Sedentary',
+    subText: 'Desk job, sitting most of the day, little to no exercise',
+  },
+  {
+    value: 'moderate',
+    label: 'Moderately Active',
+    subText: 'Standing job or light workouts 1-3 times/week',
+  },
+  {
+    value: 'active',
+    label: 'Highly Active',
+    subText: 'Physical labor or hard workouts 3-5 times/week',
+  },
 ];
 
-interface GoalStepProps {
-  currentIndex: number;
-  total: number;
-  onNext: (goal: OnboardingAnswers['goal'], goalOther?: string) => void;
-  onBack: () => void;
+interface LifestyleStepProps {
+  onNext: (lifestyle: OnboardingAnswers['lifestyle']) => void;
 }
 
-export const GoalStep: React.FC<GoalStepProps> = ({ onNext }) => {
-  const [selected, setSelected] = useState<OnboardingAnswers['goal']>();
-  const [otherText, setOtherText] = useState('');
+export const LifestyleStep: React.FC<LifestyleStepProps> = ({ onNext }) => {
+  const [selected, setSelected] = useState<OnboardingAnswers['lifestyle']>();
   const [isExiting, setIsExiting] = useState(false);
 
-  // Переменные анимации
+  // Значения для анимации
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(24)).current;
 
@@ -51,7 +62,7 @@ export const GoalStep: React.FC<GoalStepProps> = ({ onNext }) => {
     };
   }, [fadeAnim, slideAnim]);
 
-  // 2. Анимация выхода при нажатии на Next
+  // 2. Анимация выхода при нажатии на кнопку Next
   const handleNext = () => {
     if (!selected || isExiting) return;
     setIsExiting(true);
@@ -71,7 +82,7 @@ export const GoalStep: React.FC<GoalStepProps> = ({ onNext }) => {
       }),
     ]).start(({ finished }) => {
       if (finished) {
-        onNext(selected, selected === 'other' ? otherText : undefined);
+        onNext(selected);
       }
     });
   };
@@ -86,26 +97,20 @@ export const GoalStep: React.FC<GoalStepProps> = ({ onNext }) => {
     >
       <View className="gap-xl">
         <Text className="text-disp font-bold text-foreground">
-          What's your main goal?
+          What's your lifestyle?
         </Text>
-        
+
         <View className="gap-md">
-          {GOALS.map((goal) => (
+          {LIFESTYLES.map((item) => (
             <SelectItem
-              key={goal.value}
-              value={goal.value}
-              mainText={goal.label}
-              selected={selected === goal.value}
+              key={item.value}
+              value={item.value}
+              mainText={item.label}
+              subText={item.subText}
+              selected={selected === item.value}
               onSelect={setSelected}
             />
           ))}
-
-          {selected === 'other' ? (
-            <TextArea
-              placeholder="Write here..."
-              onChangeText={setOtherText}
-            />
-          ) : null}
         </View>
       </View>
 
@@ -118,4 +123,4 @@ export const GoalStep: React.FC<GoalStepProps> = ({ onNext }) => {
   );
 };
 
-export default GoalStep;
+export default LifestyleStep;

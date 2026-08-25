@@ -93,7 +93,7 @@ export const GoalConfirmStep: React.FC<GoalConfirmStepProps> = ({
           
           // 2. ДЕЛАЕМ ИМИТАЦИЮ ЗАГРУЗКИ
           // 2 цикла = 3.2 секунды мерцания. После этого вызовется onNext()
-          iterations: 2, 
+          iterations: 1, 
         }
       ).start(({ finished }) => {
         if (finished) {

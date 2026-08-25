@@ -23,7 +23,7 @@ export function SelectItem<T extends string = string>({
       }}  
       activeOpacity={1}
     >
-      <Text className={cn('text-body', selected ? 'text-accent' : 'text-foreground-muted transition-all')}>
+      <Text className={cn('text-body transition-all', selected ? 'text-accent' : 'text-foreground-muted ')}>
         {mainText}
       </Text>
       {subText && <Text className="text-cap text-foreground-muted">{subText}</Text>}

@@ -7,6 +7,10 @@ import { useOnboarding } from '../model/useOnboarding';
 import GoalStep from './GoalStep';
 import GoalConfirmStep from './GoalConfirmStep';
 import ProfileStep from './ProfileStep';
+import BodyStep from './BodyStep';
+import LifestyleStep from './LifestyleStep';
+import BudgetStep from './BudgetStep';
+import BuildingPlanStep from './BuildingPlanStep';
 
 export const OnboardingFlow = () => {
   const {
@@ -71,9 +75,37 @@ export const OnboardingFlow = () => {
                     />
                 )
             case 'body':
+              return (
+                <BodyStep
+                  onNext={(height, weight) => {
+                    updateAnswers({ height, weight });
+                    next();
+                  }}
+                />
+              );
             case 'lifestyle':
-            case 'budget':
+              return (
+                <LifestyleStep
+                  onNext={(lifestyle) => {
+                    updateAnswers({ lifestyle });
+                    next();
+                  }}
+                />
+  );        case 'budget':
+              return (
+                <BudgetStep
+                  onNext={(budget, currency) => {
+                    updateAnswers({ budget, currency });
+                    next();
+                  }}
+                />
+              );
             case 'building-plan':
+              return (
+                <BuildingPlanStep
+                  onNext={next}
+                />
+              );
             case 'plan-ready':
               return <Text>{step}</Text>;
 
