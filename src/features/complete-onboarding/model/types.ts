@@ -10,3 +10,10 @@ export interface OnboardingAnswers {
   budget: number;
   currency: 'RUB' |  'USD' | 'EUR' ;
 }
+
+export interface NutritionGoal {
+  calories: number;
+  proteins: number; //g
+  fats: number; //g
+  carbs: number; //g
+}

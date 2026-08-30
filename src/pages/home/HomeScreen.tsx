@@ -74,7 +74,7 @@ export const HomeScreen = () => {
   }
 ]
   return (
-    <SafeAreaView className="bg-background p-3xl gap-xl flex-1 items-center w-full">
+    <SafeAreaView className="bg-background p-3xl gap-xl flex-1  w-full">
       <OnboardingFlow/>
     </SafeAreaView> 
   );

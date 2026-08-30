@@ -11,6 +11,7 @@ import BodyStep from './BodyStep';
 import LifestyleStep from './LifestyleStep';
 import BudgetStep from './BudgetStep';
 import BuildingPlanStep from './BuildingPlanStep';
+import PlanReadyStep from './PlanReadyStep';
 
 export const OnboardingFlow = () => {
   const {
@@ -107,7 +108,7 @@ export const OnboardingFlow = () => {
                 />
               );
             case 'plan-ready':
-              return <Text>{step}</Text>;
+              return <PlanReadyStep/>;
 
             default:
               return <Text>{step}</Text>;
